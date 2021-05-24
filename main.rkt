@@ -27,33 +27,41 @@
          scribble/base
          scribble/html-properties
          racket/runtime-path)
-(provide jquery jquery-3.5.1
-         rainbow-delimiters)
+(provide jquery-3.5.1
+         rainbow-delimiters
+         script/jquery-3.5.1
+         script/rainbow-delimiters
+         script/rainbow-delimiters*)
+
+;;; usages:
+;; (elem #:style jquery-3.5.1)
+;; (elem #:style rainbow-delimiters)
+;; script/jquery-3.5.1
+;; script/rainbow-delimiters
+;; script/rainbow-delimiters*
 
 
-;; file:///Applications/Racket%20v8.0/doc/scribble/extra-style.html?q=at-exp
-
+;;;;; file:///Applications/Racket%20v8.0/doc/scribble/extra-style.html?q=at-exp
 (define-runtime-path js/jquery-3.5.1.min.js "js/jquery-3.5.1.min.js")
-(define-runtime-path js/main.js "js/main.js")
+(define-runtime-path js/rainbow-delimiters.js "js/rainbow-delimiters.js")
 
 (define jquery-3.5.1
-  (elem
-   #:style
-   (style #f
-     (list (alt-tag "script")
-           (attributes
-            `((type . "text/javascript")
-              (src . ,(path->string js/jquery-3.5.1.min.js))))))))
-(define jquery jquery-3.5.1)
-
+  (make-style #f
+              (list (make-js-addition js/jquery-3.5.1.min.js))))
 (define rainbow-delimiters
-  (elem
-   #:style
-   (style #f
-     (list (alt-tag "script")
-           (attributes
-            `((type . "text/javascript")
-              (src . ,(path->string js/main.js))))))))
+  (make-style #f
+              (list (make-js-addition js/rainbow-delimiters.js))))
+
+(define script/jquery-3.5.1
+  (elem #:style jquery-3.5.1))
+(define script/rainbow-delimiters
+  (elem #:style rainbow-delimiters))
+
+(define script/rainbow-delimiters*
+  (list
+     (elem #:style jquery-3.5.1)
+     (elem #:style rainbow-delimiters)))
+
 
 
 (module+ test
