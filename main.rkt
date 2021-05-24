@@ -23,7 +23,37 @@
 ;; See the current version of the racket style guide here:
 ;; http://docs.racket-lang.org/style/index.html
 
-;; Code here
+(require scribble/core
+         scribble/base
+         scribble/html-properties
+         racket/runtime-path)
+(provide jquery-3.5.1
+         rainbow-delimiters)
+
+;; file:///Applications/Racket%20v8.0/doc/scribble/extra-style.html?q=at-exp
+
+(define-runtime-path js/jquery-3.5.1.min.js "js/jquery-3.5.1.min.js")
+(define-runtime-path js/main.js "js/main.js")
+
+(define jquery-3.5.1
+  (elem
+   #:style
+   (style #f
+     (list (alt-tag "script")
+           (attributes
+            `((type . "text/javascript")
+              (src . ,(path->string js/jquery-3.5.1.min.js)))))))
+  )
+
+(define rainbow-delimiters
+  (elem
+   #:style
+   (style #f
+     (list (alt-tag "script")
+           (attributes
+            `((type . "text/javascript")
+              (src . ,(path->string js/main.js)))))))
+  )
 
 
 
