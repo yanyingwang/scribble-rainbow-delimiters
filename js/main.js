@@ -38,10 +38,13 @@ const colors = [
 ]
 
 
-const RDBlocks = [];
-  RDBlocks.push(".SCodeFlow");  // ".SCodeFlow RktPn"
-  RDBlocks.push("blockquote.SVInsetFlow");
-}
+// file:///Applications/Racket%20v8.0/doc/scribble/builtin-css.html?q=elem
+const RDBlocks = [
+  ".SCodeFlow",  // ".SCodeFlow RktPn"
+  "blockquote.SVInsetFlow"
+]
+
+
 
 
 function getRandomStr() {

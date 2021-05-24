@@ -27,8 +27,9 @@
          scribble/base
          scribble/html-properties
          racket/runtime-path)
-(provide jquery-3.5.1
+(provide jquery jquery-3.5.1
          rainbow-delimiters)
+
 
 ;; file:///Applications/Racket%20v8.0/doc/scribble/extra-style.html?q=at-exp
 
@@ -42,8 +43,8 @@
      (list (alt-tag "script")
            (attributes
             `((type . "text/javascript")
-              (src . ,(path->string js/jquery-3.5.1.min.js)))))))
-  )
+              (src . ,(path->string js/jquery-3.5.1.min.js))))))))
+(define jquery jquery-3.5.1)
 
 (define rainbow-delimiters
   (elem
@@ -52,9 +53,7 @@
      (list (alt-tag "script")
            (attributes
             `((type . "text/javascript")
-              (src . ,(path->string js/main.js)))))))
-  )
-
+              (src . ,(path->string js/main.js))))))))
 
 
 (module+ test
