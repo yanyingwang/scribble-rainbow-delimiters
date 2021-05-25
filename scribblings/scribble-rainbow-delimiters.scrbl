@@ -1,5 +1,6 @@
 #lang scribble/manual
 @require[@for-label[racket/base
+                    scribble/core
                     scribble-rainbow-delimiters]
          scribble/eval
          scribble/core
@@ -38,14 +39,14 @@ you should already notice the highlight of brackets and you can also move your m
 
 
 @section{Examples}
-Add @racket[@rainbow-delimters*] to your scribble file for generating HTML pages includes jquery and rainbow-delimiters js script:
+Add @racket[script/rainbow-delimiters*] to your scribble source file for its later generating HTML pages with adding in jquery and rainbow-delimiters js script files:
 @codeblock|{
 #lang scribble/manual
 
 @require[racket/base
          scribble-rainbow-delimiters]
 
-@script/rainbow-delimters*
+@script/rainbow-delimiters*  @; add this line
 
 @racketblock[
 (define test-list '(1 2 3))
@@ -55,12 +56,12 @@ Add @racket[@rainbow-delimters*] to your scribble file for generating HTML pages
 }|
 
 
-@section{Procedures}
+@section{API}
 @deftogether[(
 @defthing[jquery-3.5.1 style?]
 @defthing[rainbow-delimiters style?]
 )]{
-Returns scribble styles of jquery-3.5.1 or rainbow-delimiters js script.
+Returns scribble style of the jquery-3.5.1 or rainbow-delimiters js src script.
 }
 
 @deftogether[(
@@ -68,11 +69,11 @@ Returns scribble styles of jquery-3.5.1 or rainbow-delimiters js script.
 @defthing[script/rainbow-delimiters element?]
 
 )]{
-Returns a scribble element of jquery-3.5.1 or rainbow-delimiters js src script.
+Returns a scribble element of the jquery-3.5.1 or rainbow-delimiters js src script.
 }
 
 @defthing[script/rainbow-delimiters* (list script/jquery-3.5.1 script/rainbow-delimiters)]{
-Returns a list that includes @racket[script/jquery-3.5.1] and @racket[script/rainbow-delimiters].
+Returns a list whose elements are @racket[script/jquery-3.5.1] and @racket[script/rainbow-delimiters].
 }
 
 @section{Demonstration}
