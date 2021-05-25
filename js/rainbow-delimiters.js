@@ -191,4 +191,4 @@ handler = function main() {
   });
 }
 
-$(document).ready(function() { $( handler ); }); // not working for a vuejs website
+$(document).ready(function() { $( handler ); });
