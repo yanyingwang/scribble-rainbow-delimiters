@@ -38,7 +38,7 @@ you should already notice the highlight of brackets and you can also move your m
 ]
 
 
-@section{Examples}
+@section{Example}
 Add @racket[script/rainbow-delimiters*] to your scribble source file for its later generating HTML pages with adding in jquery and rainbow-delimiters js script files:
 @codeblock|{
 #lang scribble/manual
