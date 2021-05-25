@@ -1,4 +1,4 @@
-console.log("========loading Rainbow Delimiters");
+console.log("Loading scribble-rainbow-delimiters...");
 console.log("jQuery-" + jQuery().jquery);
 
 // const colors = [
