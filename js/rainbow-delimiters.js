@@ -1,24 +1,6 @@
 console.log("========loading Rainbow Delimiters");
 console.log("jQuery-" + jQuery().jquery);
 
-//// functions //////
-// const colors = [
-//   "#458588",
-//   "#b16286",
-//   "DarkSeaGreen",
-//   "IndianRed",
-//   "DarkOrchid",
-//   "#FF1493",
-//   "SteelBlue",
-//   "OliveDrab",
-//   "darkred",
-//   "#4c516d",
-//   "#7e5e60",
-//   "#666699",
-//   "#4a646c",
-//   "#5e644f"
-// ]
-
 // const colors = [
 //   "darkred",
 //   "#b16286",
@@ -40,7 +22,7 @@ const colors = [
 
 // file:///Applications/Racket%20v8.0/doc/scribble/builtin-css.html?q=elem
 const RDBlocks = [
-  ".SCodeFlow",  // ".SCodeFlow RktPn"
+  ".SCodeFlow",
   "blockquote.SVInsetFlow"
 ]
 
