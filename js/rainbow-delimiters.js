@@ -1,5 +1,5 @@
 console.log("========loading Rainbow Delimiters");
-console.log(jQuery().jquery);
+console.log("jQuery-" + jQuery().jquery);
 
 //// functions //////
 // const colors = [
@@ -45,8 +45,6 @@ const RDBlocks = [
 ]
 
 
-
-
 function getRandomStr() {
   return Math.floor(Math.random() * 10000).toString();
 }
@@ -68,20 +66,13 @@ function colorizing(RDBlock) {
     if (this.classList.contains("rd-colorized")) { return false; }
     if ($(this).find("span.rd-bracket").length) { return false; }
     if (this.innerHTML.match(/(\(|\)|\[|\]|\{|\})/)) { debugger; }
-    //TODO: this.innerHTML = this.innerHTML.replace(/<span class="RktPn">(\(|\)|\[|\]|\{|\})<\/span>/g, function(str) {  let bracket = str.match(/(\(|\)|\[|\]|\{|\})/); return `<span class='RktPn rd-bracket'>${str}</span>`; });
-    if (location.href.match(/(docs\.racket-lang\.org|file:\/\/\/.*\/Racket.*\/doc\/.*)/)) {
-      $(this).find("span").each(function(i) {
+    $(this).find("span").each(function(i) {
         if (this.innerText.match(/(\(|\)|\[|\]|\{|\})/g)) {
           this.innerHTML = this.innerHTML.replace(/(\(|\)|\[|\]|\{|\})/g, function(str) {
             return `<span class='rd-bracket'>${str}</span>`;
           });
         }
       });
-    } else {
-      this.innerHTML = this.innerHTML.replace(/(\(|\)|\[|\]|\{|\})/g, function(str) {
-        return `<span class='rd-bracket'>${str}</span>`;
-      });
-    }
 
     $(this).addClass("rd-colorized");
   })
