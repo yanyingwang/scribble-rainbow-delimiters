@@ -47,7 +47,7 @@ function colorizing(RDBlock) {
   $(RDBlock).each(function(i) {
     if (this.classList.contains("rd-colorized")) { return false; }
     if ($(this).find("span.rd-bracket").length) { return false; }
-    if (this.innerHTML.match(/(\(|\)|\[|\]|\{|\})/)) { debugger; }
+    // if (this.innerHTML.match(/(\(|\)|\[|\]|\{|\})/)) { debugger; }
     $(this).find("span").each(function(i) {
         if (this.innerText.match(/(\(|\)|\[|\]|\{|\})/g)) {
           this.innerHTML = this.innerHTML.replace(/(\(|\)|\[|\]|\{|\})/g, function(str) {
@@ -149,6 +149,17 @@ function findClosestElms(elm) {
 
 /////// actions /////////
 handler = function main() {
+  // jumping colors
+  $(window).on("hashchange", function() {
+    oldURL = new URL(event.oldURL);
+    newURL = new URL(event.newURL);
+    oldHash = oldURL.hash.substr(1)
+    newHash = newURL.hash.substr(1)
+    $(`a[name="${decodeURIComponent(oldHash)}"]`).parent().css("background", "transparent");
+    $(`a[name="${decodeURIComponent(newHash)}"]`).parent().css("background", "yellow");
+  });
+  $(`a[name="${decodeURIComponent(location.hash.substr(1))}"]`).parent().css("background", "yellow");
+
   RDBlocks.forEach(function(e) {
     if ($(e).length) { colorizing(e); }
   });
