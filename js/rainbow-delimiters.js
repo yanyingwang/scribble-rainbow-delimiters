@@ -153,10 +153,13 @@ handler = function main() {
   $(window).on("hashchange", function() {
     oldURL = new URL(event.oldURL);
     newURL = new URL(event.newURL);
-    oldHash = oldURL.hash.substr(1)
-    newHash = newURL.hash.substr(1)
-    $(`a[name="${decodeURIComponent(oldHash)}"]`).parent().css("background", "transparent");
-    $(`a[name="${decodeURIComponent(newHash)}"]`).parent().css("background", "yellow");
+    oldHash = oldURL.hash.substr(1);
+    newHash = newURL.hash.substr(1);
+    oldHashDecoded = decodeURIComponent(oldHash);
+    newHashDecoded = decodeURIComponent(newHash);
+    console.log(newHashDecoded);
+    $(`a[name="${oldHashDecoded}"]`).parent().css("background", "transparent");
+    $(`a[name="${newHashDecoded}"]`).parent().css("background", "yellow");
   });
   $(`a[name="${decodeURIComponent(location.hash.substr(1))}"]`).parent().css("background", "yellow");
 
