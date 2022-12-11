@@ -8,7 +8,6 @@ console.log("jQuery-" + jQuery().jquery);
 //   "#7e5e60",
 //   "#FF1493"
 // ]
-
 const colors = [
   "DarkRed",
   "firebrick",
@@ -26,7 +25,6 @@ const RDBlocks = [
   "blockquote.SVInsetFlow"
 ]
 
-
 function getRandomStr() {
   return Math.floor(Math.random() * 10000).toString();
 }
@@ -41,7 +39,6 @@ function rgb2hex(str) {
     return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
   }
 }
-
 
 function colorizing(RDBlock) {
   $(RDBlock).each(function(i) {
@@ -59,9 +56,9 @@ function colorizing(RDBlock) {
     $(this).addClass("rd-colorized");
   })
 
-  var recordDepth = 0;
-  var randomId;
-  var randomIdds = [];
+  let recordDepth = 0;
+  let randomId;
+  let randomIdds = [];
   $(RDBlock).find("span.rd-bracket").each(function(i) {
     if (this.className.includes("rd-id-")) { return false; }
     if (recordDepth == 0) { randomId = getRandomStr(); }
@@ -80,7 +77,7 @@ function colorizing(RDBlock) {
         color = colors[recordDepth % colors.length];
       };
 
-      var idd = getRandomStr(); randomIdds.push(idd);
+      let idd = getRandomStr(); randomIdds.push(idd);
       $(this).css("color", color);
       this.classList.add(`rd-id-${randomId}`);
       this.classList.add(`rd-idd-${idd}`);
@@ -104,7 +101,7 @@ function colorizing(RDBlock) {
         color = colors[recordDepth % colors.length];
       };
 
-      var idd = randomIdds.pop();
+      let idd = randomIdds.pop();
       $(this).css("color", color);
       this.classList.add(`rd-id-${randomId}`);
       this.classList.add(`rd-idd-${idd}`);
@@ -115,8 +112,8 @@ function colorizing(RDBlock) {
 }
 
 function findClosestElms(elm) {
-  var matchingStr = elm.textContent;
-  var matchingArr;
+  let matchingStr = elm.textContent;
+  let matchingArr;
   switch(matchingStr) {
   case '(':
   case ')':
@@ -132,16 +129,16 @@ function findClosestElms(elm) {
     break;
   }
 
-  var classNames = elm.className.split(" ");
-  var rdDepth = classNames.find(function(e) { return e.startsWith("rd-depth-") });
-  var depthNum = rdDepth.split("-").pop();
-  var rdId = classNames.find(function(e) { return e.startsWith("rd-id-") });
-  var rdIdd = classNames.find(function(e) { return e.startsWith("rd-idd-") });
-  var parentElm = elm.closest(".rd-colorized").parentElement;
-  var cousinElms = $(parentElm).find(`span.${rdDepth}.${rdId}`).not(`span.${rdIdd}`).filter(function(ii) {
+  let classNames = elm.className.split(" ");
+  let rdDepth = classNames.find(function(e) { return e.startsWith("rd-depth-") });
+  let depthNum = rdDepth.split("-").pop();
+  let rdId = classNames.find(function(e) { return e.startsWith("rd-id-") });
+  let rdIdd = classNames.find(function(e) { return e.startsWith("rd-idd-") });
+  let parentElm = elm.closest(".rd-colorized").parentElement;
+  let cousinElms = $(parentElm).find(`span.${rdDepth}.${rdId}`).not(`span.${rdIdd}`).filter(function(ii) {
     return matchingArr.includes(this.textContent);
   });
-  var brotherElms = $(parentElm).find(`span.${rdDepth}.${rdId}.${rdIdd}`).filter(function(ii) {
+  let brotherElms = $(parentElm).find(`span.${rdDepth}.${rdId}.${rdIdd}`).filter(function(ii) {
     return matchingArr.includes(this.textContent);
   });
   return [ brotherElms, cousinElms ];
@@ -149,7 +146,9 @@ function findClosestElms(elm) {
 
 /////// actions /////////
 handler = function main() {
-  // jumping colors
+  // highlight jumping
+  $(`a[name="${decodeURIComponent(location.hash.substr(1))}"]`).parent().css("background", "lightyellow");
+  $(`a[name="${decodeURIComponent(location.hash.substr(1))}"]`).next().css("background", "yellow");
   $(window).on("hashchange", function() {
     oldURL = new URL(event.oldURL);
     newURL = new URL(event.newURL);
@@ -159,9 +158,10 @@ handler = function main() {
     newHashDecoded = decodeURIComponent(newHash);
     console.log(newHashDecoded);
     $(`a[name="${oldHashDecoded}"]`).parent().css("background", "transparent");
-    $(`a[name="${newHashDecoded}"]`).parent().css("background", "yellow");
+    $(`a[name="${oldHashDecoded}"]`).next().css("background", "transparent");
+    $(`a[name="${newHashDecoded}"]`).parent().css("background", "lightyellow");
+    $(`a[name="${newHashDecoded}"]`).next().css("background", "yellow");
   });
-  $(`a[name="${decodeURIComponent(location.hash.substr(1))}"]`).parent().css("background", "yellow");
 
   RDBlocks.forEach(function(e) {
     if ($(e).length) { colorizing(e); }
@@ -169,7 +169,7 @@ handler = function main() {
 
   $("span.rd-bracket").mouseover(function(i) {
     console.log(this.classList);
-    var color = rgb2hex(this.style.color);
+    let color = rgb2hex(this.style.color);
     if (color == "white") { return false };
     if (!color.length) { return console.log(`mouseover on an unexpected rd-bracket element: ${this.outerHTML}`); }
     [ brotherElms, cousinElms ] = findClosestElms(this);
@@ -179,7 +179,7 @@ handler = function main() {
   });
 
   $("span.rd-bracket").mouseleave(function(i) {
-    var color = rgb2hex(this.style.backgroundColor);
+    let color = rgb2hex(this.style.backgroundColor);
     if (color == "transparent") { return false };
     if (!color.length) { return console.log(`mouseleave on an unexpected rd-bracket element: ${this.outerHTML}`); }
     [ brotherElms, cousinElms ] = findClosestElms(this);
